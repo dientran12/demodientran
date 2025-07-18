@@ -8,6 +8,29 @@
   --color-primary-orange: #FFA500;
 }
 
+/* Prevent horizontal overflow on mobile */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Ensure all elements respect viewport width */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Fix for Safari mobile viewport issues */
+@supports (-webkit-touch-callout: none) {
+  html {
+    height: -webkit-fill-available;
+  }
+
+  body {
+    min-height: -webkit-fill-available;
+  }
+}
+
 /* Custom glassmorphism utilities */
 @layer utilities {
   .glass {
@@ -27,6 +50,98 @@
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 215, 0, 0.3);
   }
+
+  /* Mobile-specific utilities */
+  .mobile-safe {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .mobile-container {
+    width: 100%;
+    max-width: 100vw;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Responsive background elements */
+  .bg-element {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(3rem);
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  @media (max-width: 768px) {
+    .bg-element {
+      transform: scale(0.5);
+      filter: blur(2rem);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .bg-element {
+      transform: scale(0.3);
+      filter: blur(1.5rem);
+    }
+  }
+
+  /* Animation utilities for mobile */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  /* Mobile-optimized animations */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-glow,
+    .animate-fade-in {
+      animation: none;
+    }
+  }
+
+  /* Safe area for devices with notches */
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Touch-friendly sizing */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Keyframe animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+  to { text-shadow: 0 0 30px rgba(255, 215, 0, 0.8); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Custom scrollbar */

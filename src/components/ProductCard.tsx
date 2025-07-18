@@ -27,8 +27,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     : 0;
 
   return (
-    <div 
-      className={`group relative glass rounded-2xl p-6 hover:scale-105 transition-all duration-500 ${
+    <div
+      className={`group relative glass rounded-2xl p-4 sm:p-6 hover:scale-105 transition-all duration-500 mobile-safe ${
         isHovered ? 'glass-gold' : ''
       }`}
       onMouseEnter={() => setIsHovered(true)}
@@ -51,11 +51,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <i className={`${product.icon} text-3xl`}></i>
         </div>
         
-        <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-primary-gold transition-colors duration-300">
+        <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2 group-hover:text-primary-gold transition-colors duration-300">
           {product.name}
         </h3>
-        
-        <p className="text-gray-400 text-sm leading-relaxed">
+
+        <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
           {product.description}
         </p>
       </div>
@@ -82,35 +82,35 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
 
       {/* Product Info */}
-      <div className="grid grid-cols-3 gap-4 mb-6 text-center">
-        <div className="glass-dark rounded-lg p-3">
-          <i className="fas fa-clock text-primary-gold mb-1"></i>
+      <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-6 text-center">
+        <div className="glass-dark rounded-lg p-2 sm:p-3">
+          <i className="fas fa-clock text-primary-gold mb-1 text-sm"></i>
           <div className="text-xs text-gray-400">Thời hạn</div>
-          <div className="text-sm font-semibold text-white">{product.duration}</div>
+          <div className="text-xs sm:text-sm font-semibold text-white">{product.duration}</div>
         </div>
-        <div className="glass-dark rounded-lg p-3">
-          <i className="fas fa-shield-alt text-primary-gold mb-1"></i>
+        <div className="glass-dark rounded-lg p-2 sm:p-3">
+          <i className="fas fa-shield-alt text-primary-gold mb-1 text-sm"></i>
           <div className="text-xs text-gray-400">Bảo hành</div>
-          <div className="text-sm font-semibold text-white">{product.warranty}</div>
+          <div className="text-xs sm:text-sm font-semibold text-white">{product.warranty}</div>
         </div>
-        <div className="glass-dark rounded-lg p-3">
-          <i className="fas fa-shipping-fast text-primary-gold mb-1"></i>
+        <div className="glass-dark rounded-lg p-2 sm:p-3">
+          <i className="fas fa-shipping-fast text-primary-gold mb-1 text-sm"></i>
           <div className="text-xs text-gray-400">Giao hàng</div>
-          <div className="text-sm font-semibold text-white">{product.delivery}</div>
+          <div className="text-xs sm:text-sm font-semibold text-white">{product.delivery}</div>
         </div>
       </div>
 
       {/* Pricing */}
       <div className="text-center mb-6">
         {product.originalPrice && (
-          <div className="text-gray-500 line-through text-lg mb-1">
+          <div className="text-gray-500 line-through text-base sm:text-lg mb-1">
             {formatCurrency(product.originalPrice)}
           </div>
         )}
-        <div className="text-3xl font-bold bg-gradient-to-r from-primary-gold to-primary-orange bg-clip-text text-transparent">
+        <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-primary-gold to-primary-orange bg-clip-text text-transparent">
           {formatCurrency(product.price)}
         </div>
-        <div className="text-sm text-gray-400 mt-1">
+        <div className="text-xs sm:text-sm text-gray-400 mt-1">
           Tiết kiệm {formatCurrency((product.originalPrice || product.price) - product.price)}
         </div>
       </div>
@@ -119,7 +119,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <button
         onClick={handleAddToCart}
         disabled={isAdding}
-        className={`w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 ${
+        className={`w-full py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-base lg:text-lg transition-all duration-300 ${
           isAdding
             ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
             : 'bg-gradient-to-r from-primary-gold to-primary-orange text-black hover:scale-105 hover:shadow-lg hover:shadow-primary-gold/25'

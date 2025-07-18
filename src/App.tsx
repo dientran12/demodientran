@@ -12,9 +12,9 @@ import Footer from './components/Footer';
 function App() {
   return (
     <CartProvider>
-      <div className="min-h-screen bg-gradient-to-br from-black via-primary-dark to-black">
+      <div className="min-h-screen bg-gradient-to-br from-black via-primary-dark to-black mobile-safe">
         <Header />
-        <main>
+        <main className="mobile-safe">
           <Hero />
           <Products />
           <Features />

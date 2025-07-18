@@ -25,14 +25,14 @@ const Products: React.FC = () => {
   };
 
   return (
-    <section id="products" className="py-20 relative overflow-hidden">
+    <section id="products" className="py-20 relative mobile-safe">
       {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-gold/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary-orange/5 rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="bg-element absolute top-0 left-1/4 w-96 h-96 bg-primary-gold/5"></div>
+        <div className="bg-element absolute bottom-0 right-1/4 w-96 h-96 bg-primary-orange/5"></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="mobile-container relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center glass-gold px-6 py-2 rounded-full mb-6">
@@ -57,19 +57,20 @@ const Products: React.FC = () => {
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12 px-4">
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => handleCategoryChange(category.id)}
-              className={`flex items-center px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+              className={`flex items-center px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base ${
                 selectedCategory === category.id
                   ? 'bg-gradient-to-r from-primary-gold to-primary-orange text-black'
                   : 'glass text-white hover:glass-gold hover:text-primary-gold'
               }`}
             >
-              <i className={`${category.icon} mr-2`}></i>
-              {category.name}
+              <i className={`${category.icon} mr-1 sm:mr-2`}></i>
+              <span className="hidden sm:inline">{category.name}</span>
+              <span className="sm:hidden">{category.name.split(' ')[0]}</span>
             </button>
           ))}
         </div>
