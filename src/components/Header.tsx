@@ -33,14 +33,14 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 mobile-safe safe-area-top ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 mobile-safe safe-area-top header-fixed-height ${
         isScrolled
           ? 'glass-dark shadow-lg backdrop-blur-lg'
           : 'bg-transparent'
       }`}
     >
-      <div className="mobile-container">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+      <div className="mobile-container h-full">
+        <div className="flex items-center justify-between h-full">
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <div className="w-10 h-10 bg-gradient-to-r from-primary-gold to-primary-orange rounded-lg flex items-center justify-center">
